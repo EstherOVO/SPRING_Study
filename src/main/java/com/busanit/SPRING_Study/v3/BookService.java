@@ -45,10 +45,10 @@ public class BookService {
 //      각 필드(컬럼)이 비어있는지 확인하고 업데이트한다.
 
         if (book != null) {
-            if (updateBook.getTitle() == null) {
+            if (updateBook.getTitle() != null) {
                 book.setTitle(updateBook.getTitle());
             }
-            if (updateBook.getAuthor() == null) {
+            if (updateBook.getAuthor() != null) {
                 book.setAuthor(updateBook.getAuthor());
             }
 
