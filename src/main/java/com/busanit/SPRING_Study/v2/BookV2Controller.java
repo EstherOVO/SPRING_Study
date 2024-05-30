@@ -1,4 +1,4 @@
-package com.busanit.SPRING_Study.db;
+package com.busanit.SPRING_Study.v2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/books")
-public class BookController {
+@RequestMapping("/api/v2/books")
+public class BookV2Controller {
 
 //  초기화 하지 않아도 BookRepository를 찾아 주입해 준다. → 스프링의 의존성 주입
     @Autowired  // 해당 멤버 변수에 BookRepository 인스턴스를 주입
@@ -47,8 +47,11 @@ public class BookController {
             if (updateBook.getAuthor() == null) {
                 book.setAuthor(updateBook.getAuthor());
             }
+
             return bookRepository.save(book);
+
         } else {
+
             return null;
         }
     }
@@ -61,7 +64,9 @@ public class BookController {
 
         if (book != null) {
             bookRepository.delete(book);
+
             return "성공적으로 삭제되었습니다.";
+
         } else {
 //          bookRepository.deleteById(id);
             return "없는 도서입니다.";

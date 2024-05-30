@@ -1,4 +1,4 @@
-package com.busanit.SPRING_Study.db;
+package com.busanit.SPRING_Study.v2;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

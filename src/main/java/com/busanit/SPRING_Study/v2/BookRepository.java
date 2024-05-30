@@ -1,8 +1,9 @@
-package com.busanit.SPRING_Study.db;
+package com.busanit.SPRING_Study.v2;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+// 데이터 접근 계층 → DB(JPA Hibernate)
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 //  JPA 레포지토리 선언(상속 시 해당 Entity 타입과 Id의 타입 지정)
