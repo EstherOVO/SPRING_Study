@@ -73,4 +73,16 @@ public class ArticleController {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/author/{author}")
+    public List<Article> readArticleByAuthor(@PathVariable String author) {
+
+        return articleService.readArticleByAuthor(author);
+    }
+
+    @GetMapping("/title/{title}")
+    public List<Article> getArticleByTitleContaining(@PathVariable String title) {
+
+        return articleService.readArticleByTitleContaining(title);
+    }
 }

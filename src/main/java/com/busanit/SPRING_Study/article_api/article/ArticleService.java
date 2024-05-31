@@ -32,13 +32,13 @@ public class ArticleService {
 
 //        List<ArticleDTO> articleDTOList = new ArrayList<>();    // ArticleDTO 를 담을 빈 객체
 //
-////      조회된 전체 엔터티를 순회하며 Article → ArticleDTO 변경
+//        조회된 전체 엔터티를 순회하며 Article → ArticleDTO 변경
 //        for (Article article : articles) {
 //
 //            List<Comment> comments = article.getComments();         // Article에서 커멘트를 가져옴
 //            List<CommentDTO> commentDTOList = new ArrayList<>();    // CommentDTO 를 담을 빈 객체
 //
-////          게시글을 참조하는 댓글 전체 순회하며 Comment → CommentDTO 변경
+//            게시글을 참조하는 댓글 전체 순회하며 Comment → CommentDTO 변경
 //            for (Comment comment : comments) {
 //
 //                CommentDTO commentDTO = new CommentDTO(comment.getId(), comment.getContent(), comment.getAuthor(), comment.getArticle().getId());   // CommentDTO 생성
@@ -115,6 +115,27 @@ public class ArticleService {
 
             return false;
         }
+    }
+
+//  쿼리 메서드 사용
+    public List<Article> readArticleByAuthor(String author) {
+
+        return articleRepository.findByAuthor(author);
+    }
+
+    public List<Article> readArticleByAuthorJPQL(String author) {
+
+        return articleRepository.findByAuthorJPQL(author);
+    }
+
+    public List<Article> readArticleByAuthorNative(String author) {
+
+        return articleRepository.findByAuthorNative(author);
+    }
+
+    public List<Article> readArticleByTitleContaining(String title) {
+
+        return articleRepository.findByTitleContaining(title);
     }
 }
 
