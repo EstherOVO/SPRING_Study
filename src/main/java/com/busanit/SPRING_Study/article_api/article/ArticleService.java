@@ -118,24 +118,18 @@ public class ArticleService {
     }
 
 //  쿼리 메서드 사용
-    public List<Article> readArticleByAuthor(String author) {
+    public List<ArticleDTO> readArticleByAuthor(String author) {
 
-        return articleRepository.findByAuthor(author);
+        List<Article> articleList = articleRepository.findByAuthor(author);
+
+        return articleList.stream().map(Article::toDTO).toList();
     }
 
-    public List<Article> readArticleByAuthorJPQL(String author) {
+    public List<ArticleDTO> readArticleByTitleContaining(String title) {
 
-        return articleRepository.findByAuthorJPQL(author);
-    }
+        List<Article> articleList = articleRepository.findByTitleContaining(title);
 
-    public List<Article> readArticleByAuthorNative(String author) {
-
-        return articleRepository.findByAuthorNative(author);
-    }
-
-    public List<Article> readArticleByTitleContaining(String title) {
-
-        return articleRepository.findByTitleContaining(title);
+        return articleList.stream().map(Article::toDTO).toList();
     }
 }
 

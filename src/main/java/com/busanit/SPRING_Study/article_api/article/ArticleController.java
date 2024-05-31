@@ -75,13 +75,13 @@ public class ArticleController {
     }
 
     @GetMapping("/author/{author}")
-    public List<Article> readArticleByAuthor(@PathVariable String author) {
+    public List<ArticleDTO> readArticleByAuthor(@PathVariable String author) {
 
         return articleService.readArticleByAuthor(author);
     }
 
     @GetMapping("/title/{title}")
-    public List<Article> getArticleByTitleContaining(@PathVariable String title) {
+    public List<ArticleDTO> getArticleByTitleContaining(@PathVariable String title) {
 
         return articleService.readArticleByTitleContaining(title);
     }
