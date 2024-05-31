@@ -3,6 +3,10 @@ package com.busanit.SPRING_Study.article_api.article;
 import com.busanit.SPRING_Study.article_api.comment.CommentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -131,5 +135,20 @@ public class ArticleService {
 
         return articleList.stream().map(Article::toDTO).toList();
     }
+
+//  페이징
+    public Page<Article> readArticles(int page, int size, String sortBy) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+        return articleRepository.findAll(pageable);
+    }
+
+//    public Page<Article> getArticlesByAuthor(String author, int page, int size, String sortBy) {
+//
+//        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//
+//        return articleRepository.findByAuthor(author, pageable);
+//    }
 }
 

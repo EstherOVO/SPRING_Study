@@ -1,10 +1,12 @@
 package com.busanit.SPRING_Study.article_api.article;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Repository
@@ -56,4 +58,13 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(value = "SELECT * FROM article WHERE title LIKE %:title%", nativeQuery = true)
     List<Article> findByTitleContainingNative(String title);
 
+//  ----------------------------------------------------------
+
+//  페이징과 정렬
+
+//  Page, Pageable 임포트(import)하고, 페이징과 정렬을 위한 메서드
+    Page<Article> findAll(Pageable pageable);
+
+//  특정 필드(author)로 페이징
+    Page<Article> findByAuthor(String author, Pageable pageable);
 }

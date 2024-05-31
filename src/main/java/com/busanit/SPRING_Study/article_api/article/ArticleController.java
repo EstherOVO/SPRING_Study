@@ -2,6 +2,7 @@ package com.busanit.SPRING_Study.article_api.article;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -80,9 +81,32 @@ public class ArticleController {
         return articleService.readArticleByAuthor(author);
     }
 
+//  커스텀 레포지토리
     @GetMapping("/title/{title}")
     public List<ArticleDTO> getArticleByTitleContaining(@PathVariable String title) {
 
         return articleService.readArticleByTitleContaining(title);
     }
+
+//  페이징
+//  게시글 페이징, 정렬된 상태로 조회하기
+    @GetMapping("/page")
+    public Page<Article> getArticles(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy) {
+        Page<Article> articles = articleService.readArticles(page, size, sortBy);
+        return articles;
+    }
+
+//    특정 저자의 게시글 페이징, 정렬된 상태로 조회
+//    @GetMapping("/author")
+//    public Page<Article> getArticlesByAuthor(
+//            @RequestParam String author,
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size,
+//            @RequestParam(defaultValue = "id") String sortBy) {
+//        Page<Article> articles = articleService.readArticleByAuthor(author, page, size, sortBy);
+//        return articles;
+//    }
 }
